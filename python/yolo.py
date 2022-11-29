@@ -2,9 +2,10 @@ import cv2
 import time
 import sys
 import numpy as np
+import os
 
 def build_model(is_cuda):
-    net = cv2.dnn.readNet("config_files/yolov5s.onnx")
+    net = cv2.dnn.readNet("../config_files/yolov5s.onnx")
     if is_cuda:
         print("Attempty to use CUDA")
         net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
@@ -33,7 +34,7 @@ def load_capture():
 
 def load_classes():
     class_list = []
-    with open("config_files/classes.txt", "r") as f:
+    with open("../config_files/classes.txt", "r") as f:
         class_list = [cname.strip() for cname in f.readlines()]
     return class_list
 
